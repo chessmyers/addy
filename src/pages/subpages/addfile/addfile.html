@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button clear color="secondary" navPop>
+        Cancel
+      </button>
+    </ion-buttons>
+    <ion-title>Add File</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item padding>
+      <button ion-button color="secondary">Choose File</button>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label fixed>File Name</ion-label>
+      <ion-input type="text" value="Something descriptive..."></ion-input>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label>File Description</ion-label>
+      <ion-textarea value="150 characters or less..."></ion-textarea>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="fileCategory">
+        <ion-option value="studyGuide">Study Guide</ion-option>
+        <ion-option value="homework">Past Homework</ion-option>
+        <ion-option value="quiz">Past Quiz</ion-option>
+        <ion-option value="test">Past Test</ion-option>
+        <ion-option value="syllabus">Syllabus</ion-option>
+        <ion-option value="other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item padding>
+      <button ion-button block color="primary" large>
+        Add File to Class
+      </button>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

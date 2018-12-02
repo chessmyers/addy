@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Feed</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="addPostModal()"><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
+
+  <ion-list *ngFor="let post of posts">
+
+    <ion-card>
+      <ion-item (click)="openPost(post)">
+        <h2>{{ post.title }}</h2>
+        <h4>Posted by: {{ post.poster }}</h4>
+        <p>{{ post.clasFor }}</p>
+        <p>{{ post.content }}</p>
+        <span>
+      <button ion-button icon-only clear>
+        <ion-icon name="chatbubbles"></ion-icon>
+      </button>
+        <button ion-button icon-only clear color="danger">
+          <ion-icon name="heart"></ion-icon>
+        </button>
+      </span>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

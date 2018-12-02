@@ -1,0 +1,88 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <div padding>
+  <ion-segment [(ngModel)]="profileOptions">
+    <ion-segment-button value="profile">
+      Profile
+    </ion-segment-button>
+    <ion-segment-button value="savedFiles">
+      Saved Files
+    </ion-segment-button>
+    <ion-segment-button value="settings">
+      Settings
+    </ion-segment-button>
+  </ion-segment>
+  </div>
+
+  <div [ngSwitch]="profileOptions">
+    <div *ngSwitchCase="'profile'">
+
+      <ion-list>
+
+        <ion-item padding>
+          <ion-label fixed>Username</ion-label>
+          <ion-input type="text" value="CollegeStudent123" disabled></ion-input>
+        </ion-item>
+
+        <ion-item padding>
+          <ion-label fixed>Full Name</ion-label>
+          <ion-input type="text" value="John Doe"></ion-input>
+        </ion-item>
+
+        <ion-item padding>
+          <ion-label>Anonymous to Other Users?</ion-label>
+          <ion-toggle checked="true"></ion-toggle>
+        </ion-item>
+
+        <ion-item padding>
+          <button ion-button block color="primary" large>
+            Save Changes
+          </button>
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <div *ngSwitchCase="'savedFiles'">
+      <ion-item-group>
+        <ion-item-divider color="light">Study Guides </ion-item-divider>
+        <ion-item>File 1</ion-item>
+        <ion-item>File 2</ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Past Quizzes</ion-item-divider>
+        <ion-item>File 3</ion-item>
+        <ion-item>File 4</ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Past Tests</ion-item-divider>
+        <ion-item>File 5</ion-item>
+        <ion-item>File 6</ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Syllabi</ion-item-divider>
+        <ion-item>File 7</ion-item>
+        <ion-item>File 8</ion-item>
+      </ion-item-group>
+    </div>
+
+    <div *ngSwitchCase="'settings'">
+      <ion-item padding>
+        <button ion-button block color="danger" large>
+          Delete Account
+        </button>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

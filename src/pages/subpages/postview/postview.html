@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View Post: {{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <h1>{{title}}</h1>
+      <p>Posted by: {{ poster }}</p>
+      <p>{{ clasFor }}</p>
+    </ion-list-header>
+    <ion-item text-wrap>
+      <p>{{ content }}</p>
+    </ion-item>
+    <ion-item>
+        <button ion-button icon-only clear color="danger">
+          <ion-icon name="heart"></ion-icon>
+        </button>
+      <h2>Comments:</h2>
+    </ion-item>
+  </ion-list>
+  <ion-footer>
+    <ion-item>
+      <ion-input type="text" placeholder="Add a comment..."></ion-input>
+      <button ion-button item-end small round>Post</button>
+    </ion-item>
+  </ion-footer>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ post.title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngFor="let comment of comments">
+    <div ion-item class="from-me" no-lines text-wrap>
+      <span class="time">{{ formatCreatedDate(comment.time, 2)}} ago</span>
+      <p class="commtext">{{ comment.text }}</p>
+      <small><b>{{ comment.posterName}}</b></small>
+    </div>
+    <div class="space"></div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-input type="text" placeholder="Add a comment..." [(ngModel)]="commentBoxText"></ion-input>
+    <button ion-button item-end small round (click)="onMakeComment()" [disabled]="commentBoxText.length == 0">Post</button>
+  </ion-item>
+</ion-footer>

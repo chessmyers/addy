@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ className }} - {{ term }}</ion-title>
+    <ion-title>{{ courseId }} - {{ courseFullName }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,13 +22,13 @@
       <ion-segment-button value="posts">
         Posts
       </ion-segment-button>
-      <ion-segment-button value="students">
+      <ion-segment-button value="students" (click)="loadStudents()">
         Members
       </ion-segment-button>
-      <ion-segment-button value="files">
+      <ion-segment-button value="files" (click)="loadFiles()">
         Files
       </ion-segment-button>
-      <ion-segment-button value="chat">
+      <ion-segment-button value="chat" (click)="loadChat()">
         Chat
       </ion-segment-button>
     </ion-segment>
@@ -36,49 +36,112 @@
 
   <div [ngSwitch]="classPages">
     <div *ngSwitchCase="'posts'">
-      Posts
+
+      <ion-searchbar style="border-radius: 20px;"></ion-searchbar>
+
+      <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+      <ion-list *ngFor="let post of posts" inset>
+        <ion-item>
+        <button ion-item (click)="openPost(post)">
+          <h2>{{ post.title }}</h2>
+          <h3 style="display: inline">{{ post.content }}</h3>
+          <h4>Posted by: {{ post.poster_name }}</h4>
+          <p>{{ post.classFor.toUpperCase() }}</p>
+          <p>{{ post.text }}</p>
+          <h5>Posted {{ ago(post.created) }} ago</h5>
+          <img [src]="post.image" *ngIf="post.image">
+
+        </button>
+          <span padding-left>
+      <button ion-button icon-only clear (click)="openComments(post)">
+        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+      </button>
+        <button ion-button icon-only clear color="primary">
+          <ion-icon name="ios-heart-outline"></ion-icon>
+        </button>
+      </span>
+        </ion-item>
+      </ion-list>
+
+      <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+        <ion-infinite-scroll-content>
+
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
     </div>
 
+     <!--students list-->
     <div *ngSwitchCase="'students'">
-      <ion-list *ngFor="let student of students">
+
+      <ion-refresher (ionRefresh)="refreshStudents($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+      <ion-list *ngFor="let student of studentsList">
         <ion-item>
           <ion-avatar item-start>
             <img src="../../../assets/imgs/avatar-default.png"/></ion-avatar>
-          <h2 *ngIf="!student.anon; else anonBlock">{{ student.name }}</h2>
-          <ng-template #anonBlock>User Hidden</ng-template>
-          <p *ngIf="!student.anon; else emailAnonBlock">{{ student.email }}</p>
-          <ng-template #emailAnonBlock><p>Email Hidden</p></ng-template>
+          {{ student }}
+          <!--<ng-template #anonBlock>User Hidden</ng-template>-->
+          <!--<p *ngIf="!student.anon; else emailAnonBlock">{{ student.email }}</p>-->
+          <!--<ng-template #emailAnonBlock><p>Email Hidden</p></ng-template>-->
         </ion-item>
       </ion-list>
     </div>
 
     <div *ngSwitchCase="'files'">
 
+      <ion-refresher (ionRefresh)="refreshFiles($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
       <ion-item-group>
         <ion-item-divider color="light">Study Guides</ion-item-divider>
-        <ion-item>File 1</ion-item>
-        <ion-item>File 2</ion-item>
+        <ion-list *ngFor="let file of sgList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Past Homeworks</ion-item-divider>
+        <ion-list *ngFor="let file of hwList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
       </ion-item-group>
       <ion-item-group>
         <ion-item-divider color="light">Past Quizzes</ion-item-divider>
-        <ion-item>File 3</ion-item>
-        <ion-item>File 4</ion-item>
+        <ion-list *ngFor="let file of quizList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
       </ion-item-group>
       <ion-item-group>
         <ion-item-divider color="light">Past Tests</ion-item-divider>
-        <ion-item>File 5</ion-item>
-        <ion-item>File 6</ion-item>
+        <ion-list *ngFor="let file of testList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
       </ion-item-group>
       <ion-item-group>
         <ion-item-divider color="light">Syllabi</ion-item-divider>
-        <ion-item>File 7</ion-item>
-        <ion-item>File 8</ion-item>
+        <ion-list *ngFor="let file of syllList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Other</ion-item-divider>
+        <ion-list *ngFor="let file of otherFileList">
+          <button ion-item (click)="openFile(file)">{{ file.name }}</button>
+        </ion-list>
       </ion-item-group>
 
 
     </div>
 
     <div *ngSwitchCase="'chat'">
+
+      <ion-item text-center>Chat feature coming soon!</ion-item>
       <ion-footer>
         <ion-item>
           <ion-input type="text" placeholder="Send a chat..."></ion-input>
@@ -90,5 +153,3 @@
 
 
 </ion-content>
-
-

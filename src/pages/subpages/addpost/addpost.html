@@ -13,5 +13,26 @@
 
 
 <ion-content padding>
-
+  <form #f="ngForm" (ngSubmit)="onMakePost(f)">
+<ion-list>
+  <ion-item>
+    <ion-label fixed>Title</ion-label>
+    <ion-input type="text" [(ngModel)]="title" name="title" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Message</ion-label>
+    <ion-textarea [(ngModel)]="content" name="content" required></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <!--<ion-label fixed>Image (optional)</ion-label>-->
+    <button ion-button color="secondary" small (click)="addImage()">Image (optional)</button>
+  </ion-item>
+  <ion-item *ngIf="image" margin> <!--Selected image goes here -->
+    <ion-card class="previewImg">
+      <img [src]="image" class="previewImg" alt="Image preview">
+    </ion-card>
+  </ion-item>
+</ion-list>
+    <button ion-button type="submit" block round color="primary">Post!</button>
+  </form>
 </ion-content>

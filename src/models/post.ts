@@ -1,3 +1,3 @@
 export class Post {
-  constructor(public title: String, public content: String, public clasFor: String, public poster: String) {}
+  constructor(public title: string, public content: string, public classFor: string, public poster: string, public poster_name: string, public created: any, public image: any, public id: string) {}
 }

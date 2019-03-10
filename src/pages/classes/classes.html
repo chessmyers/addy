@@ -1,45 +1,46 @@
-<ion-header>
+<ion-header padding-left>
 
-  <ion-navbar>
-    <!--
-     <ion-buttons left>
-       <button ion-button clear color="secondary" (click)="editClasses()">
-         Edit
-       </button>
-     </ion-buttons>
-     -->
-    <ion-title>Classes</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only color="secondary" (click)="addClass()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <img src="../../assets/imgs/classesTitle.png" height="40" width="192"/>
 
 </ion-header>
 
 
 <ion-content padding class="card-background-page">
 
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="addClass()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 <ion-searchbar (ionInput)="searchClasses($event)"
   [showCancelButton]="shouldShowCancel">
 
 </ion-searchbar>
+
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <p *ngIf="false" text-center>
+    <b>Looks like you haven't added any classes...add some to start using Addy!</b>
+  </p>
+
   <ion-list *ngFor="let clas of classes">
 
-    <ion-card>
+    <ion-card class="classCard">
       <ion-item-sliding>
       <ion-item (click)="viewClass(clas)">
         <ion-avatar item-start>
           <img src="../../assets/imgs/science-icon.png" />
         </ion-avatar>
         <h1>{{ clas.name }}</h1>
-        <p>{{ clas.professor }}</p>
-        <p>{{ clas.term }}</p>
-        <p>{{ clas.students.length }} students</p>
+        <h2 text-wrap>{{ clas.fullName }}</h2>
+        <p>{{ profString(clas.professor) }}</p>
+
+        <!--<p>{{ clas.term }}</p>-->
+        <p>{{ studentString(clas.students.length) }}</p>
       </ion-item>
         <ion-item-options>
-          <button ion-button color="danger">
+          <button ion-button color="danger" (click)="removeClass(clas)">
             <ion-icon name="trash">
               Remove
             </ion-icon>
@@ -49,24 +50,5 @@
     </ion-card>
 
   </ion-list>
-
-<!--
-  <ion-card [navPush]="classView">
-    <img src="../../assets/imgs/science.png"/>
-    <div class="card-title">CHEM 1000: Intro to Chemistry</div>
-    <div class="card-subtitle">27 Available Files</div>
-  </ion-card>
-
-  <ion-card [navPush]="classView">
-    <img src="../../assets/imgs/math.jpg"/>
-    <div class="card-title">MATH 1900: Linear Algebra 2</div>
-    <div class="card-subtitle">41 Available Files</div>
-  </ion-card>
-
-  <ion-card [navPush]="classView">
-    <img src="../../assets/imgs/history.jpg"/>
-    <div class="card-title">HIST 2200: History of Los Angeles</div>
-    <div class="card-subtitle">19 Available Files</div>
-  </ion-card>-->
 
 </ion-content>

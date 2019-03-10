@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View File: {{ name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>{{ name }}</h1>
+  <h3>{{ category }}</h3>
+  <h2>{{ description }}</h2>
+  <h4>Posted by {{ posterName }}</h4>
+  <h5>Created {{ formatCreatedDate(created) }}</h5>
+  <br>
+  <a [href]="url">File Download</a>
+</ion-content>

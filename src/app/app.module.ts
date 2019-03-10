@@ -13,10 +13,17 @@ import { PostviewPage } from "../pages/subpages/postview/postview";
 import { AddfilePage } from "../pages/subpages/addfile/addfile";
 import { AddclassPage } from "../pages/subpages/addclass/addclass";
 import { AddpostPage } from "../pages/subpages/addpost/addpost";
+import { SigninupPage } from "../pages/signinup/signinup";
+import { FileviewPage } from "../pages/subpages/fileview/fileview";
+import { CommentsviewPage } from "../pages/subpages/commentsview/commentsview";
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {AuthService} from "../services/auth";
+import { PostingService } from "../services/posting";
+
+import { Camera } from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -31,6 +38,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AddfilePage,
     AddclassPage,
     AddpostPage,
+    SigninupPage,
+    FileviewPage,
+    CommentsviewPage,
     TabsPage
   ],
   imports: [
@@ -50,12 +60,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AddfilePage,
     AddclassPage,
     AddpostPage,
+    SigninupPage,
+    FileviewPage,
+    CommentsviewPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService, PostingService, Camera
   ]
 })
 export class AppModule {}

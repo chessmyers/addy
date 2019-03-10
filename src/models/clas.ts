@@ -1,5 +1,3 @@
-import { Student } from "./student";
-
 export class Clas {
-  constructor(public name: String, public professor: String, public term: String, public students: Student[]) {}
+  constructor(public fullName: string, public identifier: string, public professor: string, public subject: string, public abbvr: string, public type: string, public units: string, public students: string[], public id: string) {}
 }

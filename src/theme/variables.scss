@@ -34,10 +34,12 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #ff1097,
+  secondary:  #FF5858,
   danger:     #f53d3d,
+  caution:    #ffe619,
   light:      #f4f4f4,
+  defaultblue:#488aff,
   dark:       #222
 );
 
@@ -86,3 +88,39 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/avenir/avenir.otf');
+}
+
+@font-face {
+  font-family: "Arista";
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/arista/arista.ttf');
+}
+
+$font-family-base: "Arista", sans-serif !default;
+ion-item {
+  font-family: "Avenir Next" !important;
+  font-weight: 400 !important;
+}
+
+$font-family-base: "Avenir Next", sans-serif !default;
+ion-header {
+  font-family: "Arista" !important;
+  font-weight: 400 !important;
+  font-size: 70px;
+}
+
+ion-segment {
+  font-family: "Avenir Next" !important;
+  font-weight: 400 !important;
+}
+
+$searchbar-md-input-border-radius: 20px;
+$searchbar-ios-input-border-radius: 20px;
+$searchbar-wp-input-border-radius: 20px;

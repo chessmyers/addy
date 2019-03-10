@@ -17,23 +17,23 @@
   <ion-list>
 
     <ion-item padding>
-      <button ion-button color="secondary">Choose File</button>
+      <button ion-button color="secondary" (click)="chooseFile()">Choose File</button>
     </ion-item>
 
     <ion-item padding>
       <ion-label fixed>File Name</ion-label>
-      <ion-input type="text" value="Something descriptive..."></ion-input>
+      <ion-input type="text" [(ngModel)]="fileName"></ion-input>
     </ion-item>
 
     <ion-item padding>
       <ion-label>File Description</ion-label>
-      <ion-textarea value="150 characters or less..."></ion-textarea>
+      <ion-textarea [(ngModel)]="fileDescription"></ion-textarea>
     </ion-item>
 
     <ion-item padding>
       <ion-label>Category</ion-label>
       <ion-select [(ngModel)]="fileCategory">
-        <ion-option value="studyGuide">Study Guide</ion-option>
+        <ion-option value="study">Study Guide</ion-option>
         <ion-option value="homework">Past Homework</ion-option>
         <ion-option value="quiz">Past Quiz</ion-option>
         <ion-option value="test">Past Test</ion-option>
@@ -43,7 +43,7 @@
     </ion-item>
 
     <ion-item padding>
-      <button ion-button block color="primary" large>
+      <button ion-button block color="primary" large (click)="onAddFile()">
         Add File to Class
       </button>
     </ion-item>

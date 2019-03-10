@@ -1,35 +1,43 @@
-<ion-header>
+<ion-header padding-left padding-top>
 
-  <ion-navbar>
-    <ion-title>Feed</ion-title>
-  </ion-navbar>
+  <img src="../../assets/imgs/feedTitle.png" height="48" width="115"/>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-fab bottom right>
-    <button ion-fab color="primary" (click)="addPostModal()"><ion-icon name="create"></ion-icon></button>
-  </ion-fab>
+  <!--<ion-fab bottom right>-->
+    <!--<button ion-fab color="primary" (click)="addPostModal()"><ion-icon name="create"></ion-icon></button>-->
+  <!--</ion-fab>-->
+  <ion-searchbar style="border-radius: 20px;"></ion-searchbar>
 
-  <ion-list *ngFor="let post of posts">
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-    <ion-card>
-      <ion-item (click)="openPost(post)">
+  <ion-list *ngFor="let post of posts" inset>
+      <button ion-item (click)="openPost(post)">
         <h2>{{ post.title }}</h2>
-        <h4>Posted by: {{ post.poster }}</h4>
-        <p>{{ post.clasFor }}</p>
-        <p>{{ post.content }}</p>
+        {{ post.content }}
+        <h4>Posted by: {{ post.poster_name }}</h4>
+        <p>{{ post.classFor }}</p>
+        <p>{{ post.text }}</p>
+        <h5>Posted {{ ago(post.created) }} ago</h5>
         <span>
       <button ion-button icon-only clear>
-        <ion-icon name="chatbubbles"></ion-icon>
+        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
       </button>
-        <button ion-button icon-only clear color="danger">
-          <ion-icon name="heart"></ion-icon>
+        <button ion-button icon-only clear color="primary">
+          <ion-icon name="ios-heart-outline"></ion-icon>
         </button>
       </span>
-      </ion-item>
-    </ion-card>
+      </button>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

@@ -11,12 +11,16 @@
   <ion-list>
     <ion-list-header>
       <h1>{{title}}</h1>
-      <p>Posted by: {{ poster }}</p>
-      <p>{{ clasFor }}</p>
+      <small>{{ formatCreatedDate(postCreated, 1) }}</small>
+      <p>Posted by: {{ posterName }}</p>
+      <p>{{ classFor.toUpperCase() }}</p>
     </ion-list-header>
     <ion-item text-wrap>
       <p>{{ content }}</p>
     </ion-item>
+    <ion-card>
+      <img [src]="image" *ngIf="image">
+    </ion-card>
     <ion-item>
         <button ion-button icon-only clear color="danger">
           <ion-icon name="heart"></ion-icon>
@@ -24,10 +28,21 @@
       <h2>Comments:</h2>
     </ion-item>
   </ion-list>
+  <ion-scroll class="cont" scrollY="true" style="height: 35%">
+    <ion-list *ngFor="let comment of comments">
+      <div ion-item class="from-me" no-lines text-wrap>
+        <span class="time">{{ formatCreatedDate(comment.time, 2)}} ago</span>
+        <p class="commtext">{{ comment.text }}</p>
+        <small><b>{{ comment.posterName}}</b></small>
+      </div>
+      <div class="space"></div>
+
+    </ion-list>
+  </ion-scroll>
   <ion-footer>
     <ion-item>
-      <ion-input type="text" placeholder="Add a comment..."></ion-input>
-      <button ion-button item-end small round>Post</button>
+      <ion-input type="text" placeholder="Add a comment..." [(ngModel)]="commentBoxText"></ion-input>
+      <button ion-button item-end small round (click)="onMakeComment()" [disabled]="commentBoxText.length == 0">Post</button>
     </ion-item>
   </ion-footer>
 </ion-content>

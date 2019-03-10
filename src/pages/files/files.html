@@ -1,88 +1,97 @@
-<ion-header>
+<ion-header padding-top padding-left>
 
-  <ion-navbar>
-    <ion-title>Profile</ion-title>
-  </ion-navbar>
-
-</ion-header>
+  <img src="../../assets/imgs/profileTitle.png" height="54" width="184"/></ion-header>
 
 
 <ion-content padding>
 
 
-  <div padding>
-  <ion-segment [(ngModel)]="profileOptions">
-    <ion-segment-button value="profile">
-      Profile
-    </ion-segment-button>
-    <ion-segment-button value="savedFiles">
-      Saved Files
-    </ion-segment-button>
-    <ion-segment-button value="settings">
-      Settings
-    </ion-segment-button>
-  </ion-segment>
-  </div>
+  <!--<div padding>-->
+  <!--<ion-segment [(ngModel)]="profileOptions">-->
+    <!--<ion-segment-button value="profile">-->
+      <!--Profile-->
+    <!--</ion-segment-button>-->
+    <!--<ion-segment-button value="savedFiles">-->
+      <!--Saved Files-->
+    <!--</ion-segment-button>-->
+    <!--<ion-segment-button value="settings">-->
+      <!--Settings-->
+    <!--</ion-segment-button>-->
+  <!--</ion-segment>-->
+  <!--</div>-->
 
-  <div [ngSwitch]="profileOptions">
-    <div *ngSwitchCase="'profile'">
+  <!--<div [ngSwitch]="profileOptions">-->
+    <!--<div *ngSwitchCase="'profile'">-->
 
       <ion-list>
 
         <ion-item padding>
-          <ion-label fixed>Username</ion-label>
-          <ion-input type="text" value="CollegeStudent123" disabled></ion-input>
+          <ion-label >Update Username</ion-label>
+          <ion-input type="text" value="" [(ngModel)]="userName"></ion-input>
         </ion-item>
+        <ion-item>Current Username: {{ userNameConstant }}</ion-item>
+
+
+        <!--<ion-item padding>-->
+          <!--<ion-label fixed>Full Name</ion-label>-->
+          <!--<ion-input type="text" value="John Doe"></ion-input>-->
+        <!--</ion-item>-->
+
+        <!--<ion-item padding>-->
+          <!--<ion-label>Anonymous to Other Users?</ion-label>-->
+          <!--<ion-toggle checked="true"></ion-toggle>-->
+        <!--</ion-item>-->
+
+        <!--<ion-item padding>-->
+          <!--&lt;!&ndash;<ion-label fixed>Profile Picture</ion-label>&ndash;&gt;-->
+          <!--<button ion-button>Update picture</button>-->
+        <!--</ion-item>-->
 
         <ion-item padding>
-          <ion-label fixed>Full Name</ion-label>
-          <ion-input type="text" value="John Doe"></ion-input>
-        </ion-item>
-
-        <ion-item padding>
-          <ion-label>Anonymous to Other Users?</ion-label>
-          <ion-toggle checked="true"></ion-toggle>
-        </ion-item>
-
-        <ion-item padding>
-          <button ion-button block color="primary" large>
+          <button ion-button round color="primary" large text-center (click)="onSaveChanges()">
             Save Changes
+          </button>
+        </ion-item>
+        <ion-item padding>
+          <button ion-button round color="caution" large (click)="onLogOut()">
+            Log Out
+          </button>
+        </ion-item>
+        <ion-item padding>
+          <button ion-button round color="danger" large (click)="onDeleteAccount()">
+            Delete Account
           </button>
         </ion-item>
 
       </ion-list>
 
-    </div>
+    <!--</div>-->
 
-    <div *ngSwitchCase="'savedFiles'">
-      <ion-item-group>
-        <ion-item-divider color="light">Study Guides </ion-item-divider>
-        <ion-item>File 1</ion-item>
-        <ion-item>File 2</ion-item>
-      </ion-item-group>
-      <ion-item-group>
-        <ion-item-divider color="light">Past Quizzes</ion-item-divider>
-        <ion-item>File 3</ion-item>
-        <ion-item>File 4</ion-item>
-      </ion-item-group>
-      <ion-item-group>
-        <ion-item-divider color="light">Past Tests</ion-item-divider>
-        <ion-item>File 5</ion-item>
-        <ion-item>File 6</ion-item>
-      </ion-item-group>
-      <ion-item-group>
-        <ion-item-divider color="light">Syllabi</ion-item-divider>
-        <ion-item>File 7</ion-item>
-        <ion-item>File 8</ion-item>
-      </ion-item-group>
-    </div>
+    <!--<div *ngSwitchCase="'savedFiles'">-->
+      <!--<ion-item-group>-->
+        <!--<ion-item-divider color="light">Study Guides </ion-item-divider>-->
+        <!--<ion-item>File 1</ion-item>-->
+        <!--<ion-item>File 2</ion-item>-->
+      <!--</ion-item-group>-->
+      <!--<ion-item-group>-->
+        <!--<ion-item-divider color="light">Past Quizzes</ion-item-divider>-->
+        <!--<ion-item>File 3</ion-item>-->
+        <!--<ion-item>File 4</ion-item>-->
+      <!--</ion-item-group>-->
+      <!--<ion-item-group>-->
+        <!--<ion-item-divider color="light">Past Tests</ion-item-divider>-->
+        <!--<ion-item>File 5</ion-item>-->
+        <!--<ion-item>File 6</ion-item>-->
+      <!--</ion-item-group>-->
+      <!--<ion-item-group>-->
+        <!--<ion-item-divider color="light">Syllabi</ion-item-divider>-->
+        <!--<ion-item>File 7</ion-item>-->
+        <!--<ion-item>File 8</ion-item>-->
+      <!--</ion-item-group>-->
+    <!--</div>-->
 
-    <div *ngSwitchCase="'settings'">
-      <ion-item padding>
-        <button ion-button block color="danger" large>
-          Delete Account
-        </button>
-      </ion-item>
-    </div>
-  </div>
+    <!--<div *ngSwitchCase="'settings'">-->
+
+    <!--</div>-->
+  <!--</div>-->
 </ion-content>

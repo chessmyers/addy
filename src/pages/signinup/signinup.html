@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-segment [(ngModel)]="signing" color="primary">
+      <ion-segment-button value="signup">
+        Sign Up
+      </ion-segment-button>
+      <ion-segment-button value="signin">
+        Sign In
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div [ngSwitch]="signing">
+    <div *ngSwitchCase="'signup'">
+      <ion-item text-center no-lines>
+        <img src="../../assets/imgs/appIconHighRez.png" height="256" width="256"/>
+      </ion-item>
+      <ion-item text-center no-lines>
+        <h1>sign up for addy</h1>
+      </ion-item>
+  <form #f="ngForm" (ngSubmit)="onSignUp(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed color="light">School Email</ion-label>
+        <ion-input type="email" ngModel name="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed color="light">Password</ion-label>
+        <ion-input type="password" ngModel name="password" required [minlength]="6"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed color="light">Username</ion-label>
+        <ion-input type="text" ngModel name="username" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block round type="submit" [disabled]="!f.valid" color="light">Sign Up</button>
+  </form>
+    </div>
+
+    <div *ngSwitchCase="'signin'">
+      <ion-item text-center no-lines>
+        <img src="../../assets/imgs/appIconHighRez.png" height="256" width="256"/>
+      </ion-item>
+      <ion-item text-center no-lines>
+        <h1>sign in to addy</h1>
+      </ion-item>
+  <form #f="ngForm" (ngSubmit)="onSignIn(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed color="light">School Email</ion-label>
+        <ion-input type="email" name="email" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed color="light">Password</ion-label>
+        <ion-input type="password" name="password" ngModel required></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block round color="light" type="submit" [disabled]="!f.valid">Sign In</button>
+  </form>
+    </div>
+  </div>
+</ion-content>
